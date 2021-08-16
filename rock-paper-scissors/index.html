@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Rock Paper Scissors!</title>
+  </head>
+  
+  <body>
+  <script>
+    function getRandomIntInclusive(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+    }
+
+    function computerPlay() {
+      var response = getRandomIntInclusive(0,2);
+      if(response == 0)
+        return "Rock";
+      if(response == 1)
+        return "Paper";
+      if(response == 2)
+        return "Scissors";
+    } 
+    
+    computerSelection = computerPlay()
+    const playerSelection = "Rock"
+    
+    function playRound(playerSelection, computerSelection) {
+      if(playerSelection == "Rock") {
+        if(computerSelection == "Scissors") {
+          return 1
+        }
+
+        if(computerSelection == "Paper") {
+          return 2
+        }
+        
+        if(computerSelection == "Rock") {
+          return 3
+        }
+      }
+
+      if(playerSelection == "Paper") {
+        if(computerSelection == "Rock") {
+          return 1
+        }
+
+        if(computerSelection == "Scissors") {
+          return 2
+        }
+
+        if(computerSelection == "Rock") {
+          return 3
+        }
+      }
+
+      if(playerSelection == "Scissors") {
+        if(computerSelection == "Paper") {
+          return 1
+        }
+
+        if(computerSelection == "Rock") {
+          return 2
+        }
+      
+        if(computerSelection == "Rock") {
+          return 3
+        }
+      }
+    }
+    
+    function game(){
+      var playerCount = 0;
+      var computerCount = 0;
+      for(var i=0; i<5; i++){
+        var playerSelection = prompt("Enter Rock/Paper/Scissors:");
+        var computerSelection =  computerPlay();
+        var roundResult = playRound(playerSelection, computerSelection);
+        
+        if(roundResult == 1) {
+          console.log(playerSelection + " beats " + computerSelection);
+          playerCount += 1;
+        }
+        
+        if(roundResult == 2) {
+          console.log(computerSelection + " beats " + playerSelection);
+          computerCount += 1;
+        }
+        
+        if(roundResult == 3) {
+          console.log("It's a draw");
+          playerCount += 1;
+          computerCount += 1;
+        }
+      }
+      
+      if(playerCount > computerCount){
+        return "You win!";
+      }
+      
+      else {
+        return "You lose!";
+      }
+    }
+    
+    console.log(game());
+  </script>  
+  </body>
+</html>
